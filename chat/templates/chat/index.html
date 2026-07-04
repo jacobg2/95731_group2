@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Scheduling Assistant — Carnegie Mellon University</title>
+  <style>
+    :root {
+      --cmu-red: #a6192e;
+      --cmu-red-dark: #8a1526;
+      --ink: #1f1e1d;
+      --ink-soft: #55524e;
+      --paper: #faf9f7;
+      --card: #ffffff;
+      --line: #e5e2dd;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: var(--cmu-red);
+      color: #fff;
+      padding: 1.1rem 1.5rem;
+      border-bottom: 4px solid var(--cmu-red-dark);
+    }
+
+    .header-inner {
+      max-width: 52rem;
+      margin: 0 auto;
+    }
+
+    .wordmark {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin: 0 0 0.2rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3rem;
+    }
+
+    .lede {
+      color: var(--ink-soft);
+      margin: 0 0 1.75rem;
+      max-width: 38rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(31, 30, 29, 0.06);
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    textarea {
+      width: 100%;
+      font: inherit;
+      color: var(--ink);
+      padding: 0.75rem 0.9rem;
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+      resize: vertical;
+      background: var(--paper);
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--cmu-red);
+      box-shadow: 0 0 0 3px rgba(166, 25, 46, 0.15);
+      background: #fff;
+    }
+
+    button {
+      margin-top: 1rem;
+      font: inherit;
+      font-weight: 600;
+      color: #fff;
+      background: var(--cmu-red);
+      border: none;
+      border-radius: 8px;
+      padding: 0.65rem 1.75rem;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    button:hover {
+      background: var(--cmu-red-dark);
+    }
+
+    button:focus-visible {
+      outline: 3px solid rgba(166, 25, 46, 0.35);
+      outline-offset: 2px;
+    }
+
+    .answer,
+    .error {
+      margin-top: 1.5rem;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      white-space: pre-wrap;
+    }
+
+    .answer {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--cmu-red);
+      box-shadow: 0 1px 3px rgba(31, 30, 29, 0.06);
+    }
+
+    .answer .tag,
+    .error .tag {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .answer .tag {
+      color: var(--cmu-red);
+    }
+
+    .error {
+      background: #fdf3f4;
+      border: 1px solid #f0cdd2;
+      border-left: 5px solid var(--cmu-red);
+      color: #6e1120;
+    }
+
+    .error .tag {
+      color: var(--cmu-red);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .footer-inner {
+      max-width: 52rem;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 2rem;
+      justify-content: space-between;
+    }
+
+    code {
+      background: #f1efec;
+      border-radius: 4px;
+      padding: 0.1em 0.4em;
+      font-size: 0.85em;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <p class="wordmark">Carnegie Mellon University</p>
+      <h1>Course Scheduling Assistant</h1>
+    </div>
+  </header>
+
+  <main>
+    <p class="lede">
+      Ask about courses, prerequisites, and planning your semester. Answers
+      are grounded in the reference material uploaded by the course staff.
+    </p>
+
+    <div class="card">
+      <form method="post">
+        {% csrf_token %}
+        <label for="{{ form.question.id_for_label }}">Your question</label>
+        {{ form.question }}
+        <br>
+        <button type="submit">Ask the assistant</button>
+      </form>
+    </div>
+
+    {% if error %}
+    <div class="error"><span class="tag">Error</span>{{ error }}</div>
+    {% endif %}
+
+    {% if answer %}
+    <div class="answer"><span class="tag">Answer</span>{{ answer }}</div>
+    {% endif %}
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Carnegie Mellon University &mdash; 95-731, Group 2</span>
+      <span>API: <code>POST /api/ask/</code> &middot; <code>{"question": "..."}</code></span>
+    </div>
+  </footer>
+</body>
+
+</html>

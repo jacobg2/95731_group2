@@ -1,0 +1,16 @@
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+exclude = ["chat/migrations"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "DJ"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+exclude = ["chat/migrations"]
+
+[[tool.mypy.overrides]]
+module = "*.migrations.*"
+ignore_errors = true

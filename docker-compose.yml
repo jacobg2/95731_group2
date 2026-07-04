@@ -1,0 +1,11 @@
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    # Environment values (API keys, hosts, ...) are loaded from the
+    # gitignored .env file by python-dotenv at runtime, so the container
+    # starts fine even before .env exists.

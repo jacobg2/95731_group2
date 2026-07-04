@@ -1,0 +1,10 @@
+95-731 Group 2 — Reference Document
+===================================
+
+Replace the contents of this file with the reference material the chat
+assistant should use to answer questions, then upload it with:
+
+    python manage.py upload_reference
+
+The assistant searches this document (via an OpenAI vector store) before
+answering and will tell you when a question is not covered by it.
