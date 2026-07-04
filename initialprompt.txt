@@ -1,0 +1,24 @@
+# Base app functionality
+I want to build an AI powered chat assistant with OpenAI’s API that accepts a question via a form or an API endpoint, and returns a response. I will provide the API key later. The bot will use a text file for reference that is uploaded to the vector store. 
+
+#Webserver stuff
+The site itself will utilize Django for the webserver framework. Create a .env file to easily change things like authorized hosts and anything else you can think of.
+
+#Development and deployment
+Local development will utilize VS Code. Create a devcontainer.json file under ‘./devcontainer’ 
+
+- devcontainer.json referencing a Dockerfile / Docker Compose that at minimum defines a Python version and forwards a Django server port and sets up VS code extensions (linter, type checker, syntax standardizing)
+- Install Python dependencies (requirements.txt) via postCreateCommand so the container is ready to run immediately after building
+- Use a gitignored .env file for secrets like API keys
+
+The application will eventually be deployed to AWS Academy Learner Sandbox. Keep the devcontainer's base image/dependencies close to what a simple deployment would need.
+
+This needs to run on my machine and anyone else's without having to change anything (as long as they have docker installed)
+
+#Architecture narrative
+Draft a 1-2 page architecture.md document that explains what was built, which AWS services were used or planned and why. Include a diagram of each primary component of the architecture, with relationships (inputs, outputs, etc.) and a one sentence description for each component of its purpose.
+
+Additionally, ensure you create these three files:
+A claude.md file once done for future reference
+A ReadMe.md that briefly describes the project and contains simple start up instructions
+A provenance.md log that notes which files/functions were agent-generated vs human-written. Leave a placeholder section for review notes
