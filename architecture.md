@@ -86,9 +86,10 @@ Sandbox**, which restricts IAM and some managed services, so the plan favors
 simple primitives available there:
 
 - **EC2 (planned, primary)** — a single small instance (e.g. `t3.small`)
-  running Docker. The same image built by our Dockerfile runs here with
-  `docker compose up`, so deployment is copy-repo → create `.env` → compose
-  up. Chosen because it is the most reliable service in the Learner Sandbox
+  running Docker. The same image built by our Dockerfile
+  (`.devcontainer/Dockerfile`) runs here with
+  `docker compose -f .devcontainer/docker-compose.yml up`, so deployment is
+  copy-repo → create `.env` → compose up. Chosen because it is the most reliable service in the Learner Sandbox
   and matches our container-first local setup.
 - **Security group (planned)** — inbound rules for SSH (22) and the app port
   (80/8000); this is the sandbox's front door instead of a load balancer,

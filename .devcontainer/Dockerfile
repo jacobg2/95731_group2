@@ -1,6 +1,8 @@
 # Single image used for both the VS Code devcontainer (via docker-compose)
 # and a simple production-style deployment (e.g. an EC2 instance in the
 # AWS Academy Learner Sandbox).
+# Build with the repo root as context: docker build -f .devcontainer/Dockerfile .
+# (ignore rules live in Dockerfile.dockerignore next to this file).
 FROM python:3.12-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \

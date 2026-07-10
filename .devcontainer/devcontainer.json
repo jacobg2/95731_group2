@@ -1,6 +1,6 @@
 {
   "name": "95731 Group 2 — CMU Course Scheduling Assistant",
-  "dockerComposeFile": ["../docker-compose.yml"],
+  "dockerComposeFile": ["docker-compose.yml"],
   "service": "web",
   "workspaceFolder": "/app",
   "overrideCommand": true,
@@ -11,7 +11,8 @@
       "onAutoForward": "notify"
     }
   },
-  "postCreateCommand": "pip install -r requirements.txt -r requirements-dev.txt && [ -f .env ] || cp .env.example .env; python manage.py migrate",
+  "postCreateCommand": "bash -l .devcontainer/postcreate.sh",
+  "postStartCommand": "bash -l .devcontainer/poststart.sh",
   "customizations": {
     "vscode": {
       "extensions": [

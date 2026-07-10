@@ -8,7 +8,8 @@ template).
 
 ## Commands
 
-All run inside the devcontainer or `docker compose run --rm web <cmd>`:
+All run inside the devcontainer or
+`docker compose -f .devcontainer/docker-compose.yml run --rm web <cmd>`:
 
 - `python manage.py runserver 0.0.0.0:8000` — dev server
 - `python manage.py test` — test suite (mocks OpenAI; no key needed)
@@ -28,10 +29,14 @@ All run inside the devcontainer or `docker compose run --rm web <cmd>`:
     `AssistantError` on any failure. Views/tests depend on this boundary —
     keep OpenAI SDK usage out of views.
   - `management/commands/upload_reference.py` — vector store setup
-- `Dockerfile` — one image for devcontainer and deployment
-  (gunicorn CMD; compose overrides with runserver)
-- `.devcontainer/devcontainer.json` — uses docker-compose service `web`,
-  installs dev deps + migrates in postCreateCommand
+- `.devcontainer/` — all Docker + devcontainer files:
+  - `Dockerfile` — one image for devcontainer and deployment (gunicorn CMD;
+    compose overrides with runserver); build context is the repo root, e.g.
+    `docker build -f .devcontainer/Dockerfile .`
+  - `docker-compose.yml`, `Dockerfile.dockerignore` — compose service `web`
+    used by both the devcontainer and plain compose
+  - `devcontainer.json` — runs `postcreate.sh` (dev deps, `.env` from
+    template) once and `poststart.sh` (migrate) on every start
 
 ## Conventions
 

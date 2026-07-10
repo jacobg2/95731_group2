@@ -1,0 +1,18 @@
+# Paths are relative to this file, so the build context and mounted
+# volume point one level up at the repo root.
+# Pin the project name; otherwise compose derives it from this file's
+# directory ("devcontainer") since the move out of the repo root.
+name: 95731_group2
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ..:/app
+    ports:
+      - "8000:8000"
+    # Environment values (API keys, hosts, ...) are loaded from the
+    # gitignored .env file by python-dotenv at runtime, so the container
+    # starts fine even before .env exists.

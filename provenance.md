@@ -20,8 +20,9 @@ Docker image build.
 | `chat/tests.py` | 8 view/API tests (OpenAI mocked) |
 | `chat/management/commands/upload_reference.py` | Vector store creation + file upload command |
 | `manage.py` | Standard Django entry point |
-| `Dockerfile`, `docker-compose.yml`, `.dockerignore` | Container setup shared by devcontainer and deployment |
-| `.devcontainer/devcontainer.json` | VS Code devcontainer (compose-based, extensions, postCreateCommand) |
+| `.devcontainer/Dockerfile`, `.devcontainer/docker-compose.yml`, `.devcontainer/Dockerfile.dockerignore` | Container setup shared by devcontainer and deployment (moved from repo root 2026-07-09) |
+| `.devcontainer/devcontainer.json` | VS Code devcontainer (compose-based, extensions, lifecycle scripts) |
+| `.devcontainer/postcreate.sh`, `.devcontainer/poststart.sh` | Devcontainer lifecycle scripts: one-time setup (deps, `.env`) and per-start migrate (added 2026-07-09) |
 | `requirements.txt`, `requirements-dev.txt`, `pyproject.toml` | Dependencies and ruff/mypy config |
 | `.env.example`, `.gitignore` | Config template and ignore rules |
 | `reference/knowledge.txt` | Placeholder reference document |
