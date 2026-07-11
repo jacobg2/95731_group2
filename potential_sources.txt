@@ -1,0 +1,15 @@
+---------
+https://www.heinz.cmu.edu/heinz-shared/_files/img/student-handbooks/aim-student-handbook.pdf
+    - This is a student handbook for the AIM program. There are a bunch of these not just for AIM. 
+https://www.heinz.cmu.edu/current-students/academic-advising/
+    - academic advising page. 
+https://api.heinz.cmu.edu/courses_api/course_list/
+    - Course list for Heinz college. Includes desriptions, prereqs, etc. 
+https://enr-apps.as.cmu.edu/open/SOC/SOCServlet/search
+    - Course search. Has the last three or four semesters. 
+
+---------
+https://docs.google.com/forms/d/e/1FAIpQLSf2vsWM99xAaLptx_G1oVTZaF2hJQ2bnrwnARHf3vu2AJTMoA/viewform?usp=dialog
+    - Form for a tutoring support request. 
+
+There's a bunch of other stuff at https://www.heinz.cmu.edu/current-students/
