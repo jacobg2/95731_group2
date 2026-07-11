@@ -36,7 +36,7 @@ Docker image build.
 | `README.md` (original stub, pre-2026-07-04) | Initial repo README, since replaced — see git history (`ecf7f92`, `b3298a4`) |
 | `.env` | Local secrets file — values filled in by humans; not in git |
 | `initialprompt.txt` | The text we wrote to build the applciation and generate the required files. |
-
+| `architecture.md` | We added and edited these architecture descriptions. The file and diagram were originally written by Claude Code |
 ## Review notes
 
 _Placeholder — add findings from human code review here (reviewer, date,

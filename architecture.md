@@ -106,6 +106,12 @@ simple primitives available there:
 - **Secrets Manager (considered)** — Learner Sandbox IAM limits make it
   awkward; the `.env` file on the instance (never in git) is the pragmatic
   substitute at this scale.
+- **Bedrock (considered, not feasible in Learner Lab)** — could replace
+  OpenAI as the LLM/retrieval provider long-term, but it isn't in the
+  Learner Sandbox's supported service list, so it isn't reachable from this
+  account today. OpenAI's Responses API + vector store already covers the
+  same need (generation and `file_search` retrieval), so there's no gap to
+  fill for this project.
 
 Heavy lifting for retrieval (embedding, chunking, similarity search) is
 deliberately outsourced to OpenAI's hosted vector store rather than running
